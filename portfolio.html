@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Portfolio</title>
+    <link rel="icon" href="./VK.gif" type="image/gif" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;800;900&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Raleway", sans-serif;
+        scroll-behavior: smooth;
+      }
+      body {
+        min-width: 100dvw;
+        min-height: 100dvh;
+        overflow-x: hidden;
+      }
+      .main-container {
+        min-height: 100%;
+        min-width: 100%;
+        background-color: #fceee3;
+      }
+      header {
+        height: 90px;
+        
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        transition: 0.6s;
+        z-index: 900;
+      }
+      header .nav-list {
+        width: 400px;
+      }
+      .nav-list a {
+        text-decoration: none;
+        color: black;
+        margin-left: 50px;
+        font-weight: 700;
+        padding: 5px;
+        border-radius: 3px;
+      }
+      .logo,
+      span {
+        /* font-family: inter !important; */
+        font-size: 20px;
+        font-weight: 900;
+      }
+      .logo {
+        background: #209f92;
+        padding: 8px 10px;
+        border-radius: 25%;
+      }
+      .nav-list:hover a {
+        opacity: 0.8;
+        filter: blur(5px);
+        transition: 0.6s ease;
+      }
+      .nav-list a:hover{
+        opacity: 1;
+        filter: blur(0px);
+        transition: all 0.6s ease;
+        transform: scale(1.1);
+        background: #209f92;
+        box-shadow: 0px 0px 5px gray;
+      }
+      .nav-list a:is(:link,:active,:visited).active{
+        background: #209f92;
+      }
+
+      #about {
+        padding-top: 80px;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+      }
+      #about .intro-box {
+        height: 400px;
+        width: 400px;
+        padding: 20px;
+        text-align: justify;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        line-height: 25px;
+      }
+      .intro-box p {
+        font-weight: 500;
+      }
+      .intro-box a {
+        text-align: center;
+        width: 200px;
+        background: #f7cb45;
+        color: black;
+        padding: 8px 20px;
+        border-radius: 20px;
+        border-top: 2px solid black;
+        border-left: 2px solid black;
+        box-shadow: 5px 5px 0px 0px #000;
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .intro-box a:active {
+        transform: translateY(4px);
+        box-shadow: 1px 2px 0px 0px #000;
+      }
+      #about .img-box {
+        width: 300px;
+        height: 280px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: start;
+
+        border: 5px solid black;
+        overflow: hidden;
+      }
+      .img-box img {
+        border-radius: 10px;
+        width: 300px;
+      }
+      .name-box {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+      }
+      .name {
+        background: #2ea68c;
+        font-weight: 600;
+        padding: 10px 20px;
+        height: fit-content;
+        border-radius: 20px;
+        box-shadow: 5px 5px 0px 0px #000;
+        border-top: 2px solid black;
+        border-left: 2px solid black;
+      }
+      header.sticky {
+        position: sticky;
+        padding: 5px;
+        background: rgba(255, 255, 255, 0.3);
+       height: 70px;
+        backdrop-filter: blur(15px);
+        color: black;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+        overflow-x: hidden;
+      }
+      header.sticky .nav-list a {
+        color: black;
+        z-index: 1000;
+      }
+      header.sticky .logo {
+        margin-left: 20px;
+      }
+      #do {
+        padding-top: 80px;
+        min-height: 100vh;
+        width: 100%;
+        text-align: center;
+        display: flex;
+        
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+        gap: 20px;
+      }
+      .box {
+        height: 350px;
+        width: 300px;
+        background: white;
+        box-shadow: 5px 5px 0px 0px #000;
+        border-radius: 10px;
+        border-left: 2px solid black;
+        border-top: 2px solid black;
+      }
+      .projects:hover .box {
+        opacity: 0.8;
+        filter: blur(5px);
+        transition: 0.6s ease;
+      }
+      .projects .box:hover,
+      .box:focus {
+        opacity: 1;
+        filter: blur(0px);
+        transform: scale(1.1);
+      }
+
+      .projects {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        gap: 30px;
+      }
+      .img {
+        overflow: hidden;
+      }
+      .img img {
+        margin-top: 20px;
+        height: 100px;
+        width: 100%;
+        object-fit: contain;
+        transform: scale(1.5);
+      }
+      .img img:hover {
+        transform: scale(1.7);
+        transition: 0.6s ease;
+      }
+      .box .text-box {
+        padding: 20px;
+        margin-top: 20px;
+        font-weight: 500;
+        line-height: 30px;
+      }
+      .text-box h4 {
+        text-align: center;
+      }
+      .text-box p {
+        text-align: justify;
+      }
+      .text-box a {
+        background: #2ea68c;
+        color: black;
+        padding: 5px 50px;
+        border-radius: 5px;
+        box-shadow: 5px 5px 0px 0px #000;
+        text-decoration: none;
+        text-align: center;
+        font-weight: 600;
+      }
+      .text-box a:active {
+        transform: translateY(4px);
+        box-shadow: 1px 2px 0px 0px #000;
+      }
+      .text-box .link {
+        text-align: center !important;
+      }
+      .form_area {
+        padding-top: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        height: 100%;
+        width: 100%;
+        border-radius: 20px;
+        padding-bottom: 20px;
+      }
+      .form_area form {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        border-left: 2px solid black;
+        border-top: 2px solid black;
+        box-shadow: 5px 5px 0px 0px #000;
+        height: 70%;
+       
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .title {
+        color: #e5c14f;
+        font-weight: 900;
+        font-size: 1.5em;
+        margin: 20px 0px;
+      }
+
+      .sub_title {
+        font-weight: 600;
+        margin: 5px 0;
+      }
+
+      .form_group {
+        display: flex;
+        flex-direction: column;
+        align-items: baseline;
+        margin: 10px;
+      }
+
+      .form_style {
+        outline: none;
+        border: 2px solid #000;
+        box-shadow: 3px 4px 0px 1px #000;
+        width: 290px;
+        padding: 12px 10px;
+        border-radius: 4px;
+        font-size: 15px;
+      }
+
+      .form_style:focus,
+      .btn:focus {
+        transform: translateY(4px);
+        box-shadow: 1px 2px 0px 0px #000;
+      }
+
+      .btn {
+        padding: 15px;
+        margin: 30px 0px;
+        width: 310px;
+        font-size: 15px;
+        background: #e5c14f;
+        border-radius: 30px;
+        font-weight: 800;
+        box-shadow: 5px 5px 0px 0px #000;
+      }
+
+      p {
+        margin: 20px 0px;
+      }
+
+      .link {
+        font-weight: 800;
+      }
+
+      * {
+        scrollbar-width: auto;
+        scrollbar-color: #171615 #ffffff;
+      }
+
+      /* Other browsers */
+      *::-webkit-scrollbar {
+        width: 16px;
+      }
+
+      *::-webkit-scrollbar-track {
+        background: #ffffff;
+      }
+
+      *::-webkit-scrollbar-thumb {
+        background-color: #171615;
+        border-radius: 14px;
+        border: 3px solid #f8f2f2;
+      }
+      .bottom-bar {
+        
+        display: none;
+    justify-content: space-evenly;
+    align-items: center;
+        width: 90%;
+        height: 60px;
+        position: fixed;
+        bottom: 15px;
+        left: 20px;
+        z-index: 1000;
+        background: #fceee3;
+        backdrop-filter: blur(15px);
+        border-radius: 10px;
+        border-left: 2px solid black;
+        border-top: 2px solid black;
+        box-shadow: 5px 5px 0px 0px #000;
+
+      }
+      .bottom-bar a{
+      font-weight: bolder;
+      text-decoration: none;
+        color: black;
+      }
+     
+      /*Responsive query*/
+      @media (max-width: 600px) {
+        header {
+          display: none;
+        }
+        .bottom-bar{
+            display: flex;
+        }
+        .bottom-bar .icon{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .icon.btmactive{
+          background: #f7cb45;
+          box-shadow: 0px 0px 5px gray;
+          padding: 5px;
+          border-radius: 3px;
+          transition: .5s all ease;
+        }
+      
+        .icon.btmactive ion-icon{
+          
+          fill: #000;
+
+        }
+        
+        #about {
+          min-height: 100%;
+          padding-top: 20px;
+          padding-bottom: 20px;
+          flex-direction: column-reverse;
+          gap: 50px;
+          align-content: center;
+          
+        }
+        #do{
+          
+            padding-top: 0px;
+            padding-bottom: 20px;
+        }
+        #do .projects{
+           
+           
+            flex-direction: column;
+        }
+        .form_area{
+          padding-top: 0;
+          
+          padding-bottom: 80px;
+        }
+        
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-container">
+      <header>
+        <p class="logo">V<span>K</span></p>
+        <div class="nav-list " id="nav-list">
+          <a href="#about" class="items active">About</a>
+          <a href="#do" class="items">What I Do</a>
+          <a href="#contact" class="items">Contact</a>
+        </div>
+      </header>
+
+      <!-- bottom-bar  -->
+
+      <div class="bottom-bar" id="bottom-bar">
+        <div class="icon btmactive">
+          <ion-icon name="home-outline"></ion-icon> 
+          <a href="#about">About</a>
+        </div>
+        <div class="icon ">
+          <ion-icon name="medkit-outline"></ion-icon>
+             <a href="#do">What I Do</a>
+        </div>
+        <div class="icon">
+          <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+            <a href="#contact">Contact</a>
+
+        </div>
+    
+       
+      </div>
+
+      <div id="about">
+        <div class="intro-box">
+          <p>Hi, my name is VimalKanth</p>
+          <h1>Spark Your Web Journey...</h1>
+          <p>
+            Together, we turn ideas into captivating realities, ensuring your
+            online presence shines in the vast digital landscape. Ignite your
+            vision, spark your success – welcome to a transformative web
+            journey!
+          </p>
+          <a href="./VimalResumeOrg.pdf" download>Download Resume</a>
+        </div>
+
+        <div class="name-box">
+          <div class="img-box">
+            <img src="./newprofile.jpg" alt="" srcset="" />
+          </div>
+          <p class="name">Vimal Kanth</p>
+        </div>
+      </div>
+
+      <div id="do">
+        <div class="text">
+          <p>Passion Led Us Here</p>
+          <h3>What I Do</h3>
+        </div>
+        <div class="projects">
+          <div class="box">
+            <div class="img">
+              <img src="design.jpg" alt="" />
+            </div>
+            <div class="text-box">
+              <h4>Web Design</h4>
+              <p>
+                I have good knowledge and experience in web design using figma
+                and also i have experience in UI/UX.
+              </p>
+            </div>
+          </div>
+          <div class="box">
+            <div class="img">
+              <img src="webdev.jpg" alt="" />
+            </div>
+            <div class="text-box">
+              <h4>Web Development</h4>
+              <p>
+                I have knowledge in HTML , CSS , JAVASCRIPT and i have developed
+                responsive websites too.
+              </p>
+            </div>
+          </div>
+          <div class="box">
+            <div class="img">
+              <img src="projects.jpg" alt="" />
+            </div>
+            <div class="text-box">
+              <h4>My Projects</h4>
+              <p class="link">I have List My projects Here</p>
+              <a href="#">Click</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="contact" class="form_area">
+        <h4 class="title">Contact Me</h4>
+        <form action="">
+          <div class="form_group">
+            <label for="name" class="sub_title">Name</label>
+            <input
+              type="text"
+              class="form_style"
+              id="name"
+              placeholder="Enter your full name"
+            />
+          </div>
+          <div class="form_group">
+            <label for="email" class="sub_title">Email</label>
+            <input
+              type="email"
+              class="form_style"
+              id="email"
+              placeholder="Enter your email"
+            />
+          </div>
+          <div class="form_group">
+            <label for="number" class="sub_title">Mobile Number</label>
+            <input
+              type="number"
+              class="form_style"
+              id="password"
+              placeholder="Enter your number"
+            />
+          </div>
+          <div>
+            <button class="btn">Send Request!</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script defer>
+      const nav=document.getElementById('nav-list');
+       const items=nav.getElementsByClassName('items');
+       const bottomBar=document.getElementById('bottom-bar');
+       const bottomIcons=bottomBar.getElementsByClassName('icon');
+       for(let i=0;i<items.length;i++){
+        items[i].addEventListener("click", function() {
+  var current = document.getElementsByClassName("active");
+  
+  current[0].className = current[0].className.replace(" active", "");
+  this.className += " active";
+  });
+       }
+       for(let j=0;j<bottomIcons.length;j++){
+        bottomIcons[j].addEventListener("click", function() {
+        var currentIcon = document.getElementsByClassName("btmactive");
+        console.log(currentIcon);
+        currentIcon[0].className = currentIcon[0].className.replace(" btmactive", "");
+        this.className += " btmactive";
+            });
+        }
+     
+       
+   
+       
+      window.addEventListener("scroll", () => {
+        const head = document.querySelector("header");
+
+        head.classList.toggle("sticky", window.scrollY > 0);
+      });
+    </script>
+
+  </body>
+</html>

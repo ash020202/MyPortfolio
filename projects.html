@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>my Projects</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;800;900&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Raleway", sans-serif;
+        scroll-behavior: smooth;
+      }
+      body {
+        min-width: 10vw;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+      .main-container {
+        height: 100%;
+        width: 100%;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .container-1 {
+        min-height: 100vh;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .container-1 p:nth-child(1) {
+        font-size: 12em;
+        color: #f7cb45;
+        text-shadow: 5px 4px 0px rgba(0, 0, 0, 0.59);
+
+        -webkit-text-stroke: 3px black;
+      }
+      .container-1 p:nth-child(2) {
+        text-align: center;
+        color: #f7cb45;
+        font-weight: bold;
+        text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.59);
+        -webkit-text-stroke: 1px black;
+      }
+      .container-1 img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        transform: rotate(90deg);
+        margin-top: 100px;
+        border: none;
+      }
+
+      .container-2 {
+        padding: 40px 0px;
+        min-height: 100vh;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        align-items: center;
+        gap: 20px;
+      }
+      .container-2 .box {
+        width: 250px;
+        height: 350px;
+        background-color: #f7cb45;
+        border-radius: 5px;
+        border: 2px solid black;
+        box-shadow: 5px 5px 0px 0px #000;
+
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        /* gap: 5px; */
+      }
+      .box img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        background-position: center;
+        border-radius: 5px;
+      }
+      .box .title-logo {
+        display: flex;
+        width: 100%;
+        align-items: center;
+      }
+      .title-logo p {
+        font-weight: 600;
+        padding-left: 8px;
+      }
+
+      .main-container hr {
+        width: 90%;
+        height: 5px;
+        background-color: black;
+        border-radius: 50px;
+      }
+
+      .project-desc p {
+        text-align: justify;
+        font-size: 14px;
+        font-weight: 500;
+      }
+      .box a {
+        background: #2ea68c;
+        color: black;
+        padding: 8px 20px;
+        border-radius: 5px;
+        border-top: 2px solid black;
+        border-left: 2px solid black;
+        box-shadow: 5px 5px 0px 0px #000;
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .box a:hover {
+        box-shadow: 1px 2px 0px 0px #000;
+      }
+
+      .box a:active {
+        transform: translateY(4px);
+        box-shadow: 1px 2px 0px 0px #000;
+      }
+
+      @media (max-width: 900px) {
+        .container-1 p:nth-child(1) {
+          font-size: 4rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="container-1">
+        <p>PROJECTS</p>
+        <p>Scroll Down to Checkout My Projects and Links</p>
+        <a href="#container-2">
+          <img src="Right Arrow.gif" alt="" />
+        </a>
+      </div>
+      <hr />
+      <div class="container-2" id="container-2">
+        <div class="box">
+          <div class="title-logo">
+            <img src="VK.gif" alt="" />
+            <p>Landing Page</p>
+          </div>
+          <div class="project-desc">
+            <p>
+              This project showcases a responsive web page built with HTML, CSS,
+              and JavaScript. The page features dynamic content loaded from a
+              JSON file, a dark mode toggle, smooth scrolling, and a
+              mobile-friendly design. This project was created using a
+              desktop-first approach.
+            </p>
+          </div>
+          <a
+            href="https://ash020202.github.io/batch-sys-assignment/BatchSys%20assignment/"
+            >visit</a
+          >
+        </div>
+        <div class="box">
+          <div class="title-logo">
+            <img src="VK.gif" alt="" />
+            <p>E-commerce Clone</p>
+          </div>
+          <div class="project-desc">
+            <p>
+              Explore Snitch, a sleek e-commerce clone featuring dynamic product
+              sliders and seamless add-to-cart options. Effortlessly browse and
+              delete items while enjoying streamlined shopping. With powerful
+              search functionality, finding your perfect purchase has never been
+              easier.
+            </p>
+          </div>
+          <a href="https://ash020202.github.io/snitch-clone/snitch.html"
+            >visit</a
+          >
+        </div>
+        <div class="box">
+          <div class="title-logo">
+            <img src="VK.gif" alt="" />
+            <p>Courier With Validation Using Javascript</p>
+          </div>
+          <div class="project-desc">
+            <p>
+              Welcome to the VK Courier Service project! This repository
+              contains the code for a simple and efficient courier booking
+              service. Real-Time Validation: Ensures data integrity before
+              submission. Dynamic Courier Requests Table: Automatically updates
+              with new bookings.
+            </p>
+          </div>
+          <a href="https://ash020202.github.io/CourierSiteWithJSFormValidation/"
+            >visit</a
+          >
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

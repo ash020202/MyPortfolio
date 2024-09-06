@@ -28,7 +28,7 @@
       header {
         height: 90px;
 
-        padding: 10px;
+        padding: 10px 70px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -59,13 +59,10 @@
         font-weight: 900;
       }
       .logo {
-        background: #209f92;
-        padding: 8px 10px;
         border-radius: 25%;
-
-        box-shadow: 5px 5px 0px 0px #000;
-        border-top: 2px solid black;
-        border-left: 2px solid black;
+        height: 40px;
+        width: 40px;
+        object-fit: cover;
       }
       .nav-list:hover a {
         opacity: 0.8;
@@ -166,9 +163,9 @@
         padding: 10px 20px;
         height: fit-content;
         border-radius: 20px;
-        box-shadow: 5px 5px 0px 0px #000;
-        border-top: 2px solid black;
-        border-left: 2px solid black;
+        box-shadow: 3px 3px 0px 0px #000;
+        color: black;
+        border: 3px solid black;
       }
       header.sticky {
         position: sticky;
@@ -205,8 +202,7 @@
         background: white;
         box-shadow: 5px 5px 0px 0px #000;
         border-radius: 10px;
-        border-left: 2px solid black;
-        border-top: 2px solid black;
+        border: 3px solid black;
       }
       .projects:hover .box {
         opacity: 0.8;
@@ -257,7 +253,8 @@
         color: black;
         padding: 5px 50px;
         border-radius: 5px;
-
+        box-shadow: 5px 5px 0px 0px #000;
+        border: 3px solid black;
         text-decoration: none;
         text-align: center;
         font-weight: 600;
@@ -285,8 +282,7 @@
         background: white;
         padding: 20px;
         border-radius: 10px;
-        border-left: 2px solid black;
-        border-top: 2px solid black;
+        border: 3px solid black;
         box-shadow: 5px 5px 0px 0px #000;
         height: 70%;
 
@@ -448,7 +444,7 @@
   <body>
     <div class="main-container">
       <header>
-        <p class="logo">V<span>K</span></p>
+        <img src="VK.gif" alt="" srcset="" class="logo" />
         <div class="nav-list" id="nav-list">
           <a href="#about" class="items active">About</a>
           <a href="#do" class="items">What I Do</a>

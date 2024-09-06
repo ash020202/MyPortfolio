@@ -58,7 +58,7 @@
       }
 
       .container-2 {
-        padding: 40px 0px;
+        padding: 40px;
         min-height: 100vh;
         width: 100%;
         display: flex;
@@ -110,6 +110,7 @@
         text-align: justify;
         font-size: 14px;
         font-weight: 500;
+        text-transform: capitalize;
       }
       .box a {
         background: #2ea68c;
@@ -129,6 +130,17 @@
       .box a:active {
         transform: translateY(4px);
         box-shadow: 1px 2px 0px 0px #000;
+      }
+      #github {
+        color: #2ea68c;
+        background: none;
+        text-decoration: underline;
+        border: none;
+        padding: 0;
+        border: unset;
+        box-shadow: unset;
+        cursor: pointer;
+        font-weight: bold;
       }
 
       @media (max-width: 900px) {
@@ -152,22 +164,56 @@
         <div class="box">
           <div class="title-logo">
             <img src="VK.gif" alt="" />
-            <p>Landing Page</p>
+            <p>React Signup and Login with OTP Verification</p>
           </div>
           <div class="project-desc">
             <p>
-              This project showcases a responsive web page built with HTML, CSS,
-              and JavaScript. The page features dynamic content loaded from a
-              JSON file, a dark mode toggle, smooth scrolling, and a
-              mobile-friendly design. This project was created using a
-              desktop-first approach.
+              The frontend is built with React, and the backend is developed
+              using Express, Node.js, and MongoDB. The project also includes my
+              own API for user registration, OTP verification, and login.
+              Nodemailer is used to send OTP emails.
             </p>
           </div>
-          <a
-            href="https://ash020202.github.io/batch-sys-assignment/BatchSys%20assignment/"
+          <a href="https://project-2-signup-login-with-auth.onrender.com/"
             >visit</a
           >
         </div>
+        <div class="box">
+          <div class="title-logo">
+            <img src="VK.gif" alt="" />
+            <p>Company Portfolio With Dynamic Data</p>
+          </div>
+          <div class="project-desc">
+            <p>
+              a professional and responsive website built for a software
+              company. The project fulfills all the requirements outlined for an
+              intermediate-level web development project, focusing on UI/UX
+              design, responsiveness, and interactive features.
+            </p>
+          </div>
+          <a href="https://ash020202.github.io/project-3-techy-software/"
+            >visit</a
+          >
+        </div>
+        <div class="box">
+          <div class="title-logo">
+            <img src="VK.gif" alt="" />
+            <p>CRUD App Built Using Angular Framework</p>
+          </div>
+          <div class="project-desc">
+            <p>
+              This Angular web app allows users to easily manage events through
+              a simple and intuitive interface.users can create new events, view
+              existing ones, update details, or delete them as needed. The app
+              seamlessly interacts with a backend API created by my friend
+              <a id="github" target="_blank" href="https://github.com/NoOne451"
+                >Ranjith</a
+              >.
+            </p>
+          </div>
+          <a href="https://angular-projects-z22n.vercel.app/">visit</a>
+        </div>
+
         <div class="box">
           <div class="title-logo">
             <img src="VK.gif" alt="" />

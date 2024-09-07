@@ -92,12 +92,6 @@
         justify-content: space-evenly;
         align-items: center;
       }
-      .name {
-        font-size: 20px;
-        font-weight: 800;
-        text-transform: capitalize;
-        color: white;
-      }
       #about .intro-box {
         height: 400px;
         width: 400px;
@@ -290,6 +284,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        transition: all 0.6s ease;
       }
 
       .title {
@@ -344,6 +339,40 @@
 
       .link {
         font-weight: 800;
+      }
+
+      .spinner {
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        border-left-color: #fff;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        animation: spin 1s linear infinite;
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      #status {
+        padding: 10px;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        transition: all 0.6s ease;
+      }
+      #status span {
+        font-size: 14px;
+      }
+      #status ion-icon {
+        font-size: 20px;
       }
 
       * {
@@ -486,7 +515,6 @@
           <div class="img-box">
             <img src="./newprofile.jpg" alt="" srcset="" />
           </div>
-          <p class="name">Vimal Kanth</p>
         </div>
       </div>
 
@@ -535,7 +563,7 @@
 
       <div id="contact" class="form_area">
         <h4 class="title">Contact Me</h4>
-        <form action="">
+        <form action="" id="contact">
           <div class="form_group">
             <label for="name" class="sub_title">Name</label>
             <input
@@ -543,6 +571,7 @@
               class="form_style"
               id="name"
               placeholder="Enter your full name"
+              required
             />
           </div>
           <div class="form_group">
@@ -552,20 +581,32 @@
               class="form_style"
               id="email"
               placeholder="Enter your email"
+              required
             />
           </div>
           <div class="form_group">
-            <label for="number" class="sub_title">Mobile Number</label>
-            <input
-              type="number"
+            <label for="number" class="sub_title">Your Message</label>
+            <!-- <input
+              type="te"
               class="form_style"
               id="password"
-              placeholder="Enter your number"
-            />
+              placeholder="Enter your Message"
+              required
+            /> -->
+            <textarea
+              class="form_style"
+              id="message"
+              placeholder="Enter your Message"
+              required
+            ></textarea>
           </div>
           <div>
-            <button class="btn">Send Request!</button>
+            <button type="submit" class="btn" id="btn">
+              <span id="btnText">Send Message</span>
+              <span id="spinner" class="spinner" style="display: none"></span>
+            </button>
           </div>
+          <p id="status"></p>
         </form>
       </div>
     </div>
@@ -582,6 +623,7 @@
       const items = nav.getElementsByClassName("items");
       const bottomBar = document.getElementById("bottom-bar");
       const bottomIcons = bottomBar.getElementsByClassName("icon");
+
       for (let i = 0; i < items.length; i++) {
         items[i].addEventListener("click", function () {
           var current = document.getElementsByClassName("active");
@@ -607,6 +649,73 @@
 
         head.classList.toggle("sticky", window.scrollY > 0);
       });
+
+      //sendmail
+
+      const form = document
+        .getElementById("contact")
+        .addEventListener("submit", async (e) => {
+          // Disable button and show spinner
+
+          e.preventDefault();
+          let name = document.getElementById("name").value;
+          let email = document.getElementById("email").value;
+          let message = document.getElementById("message").value;
+          const status = document.getElementById("status");
+          const submitBtn = document.getElementById("btn");
+          const btnText = document.getElementById("btnText");
+          const spinner = document.getElementById("spinner");
+          submitBtn.disabled = true;
+          btnText.style.display = "none";
+          spinner.style.display = "inline-block";
+          const formData = {
+            name,
+            email,
+            message,
+          };
+          try {
+            const response = await fetch("http://localhost:3000/sendmail", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(formData),
+            });
+
+            const result = await response.json();
+            console.log(result);
+            status.style.display = "flex";
+            if (response.ok) {
+              // Clear the form fields after successful submission
+              document.getElementById("name").value = "";
+              document.getElementById("email").value = "";
+              document.getElementById("message").value = "";
+
+              // Provide user feedback (optional)
+              // alert("Message sent successfully!");
+              // console.log();
+              status.style.display = "flex";
+              status.innerHTML = `<ion-icon name="checkmark-circle-outline"></ion-icon><span> Message sent successfully!</span>`;
+              status.style.color = "lightgreen";
+            } else {
+              // alert("Failed to send message. Please try again.");
+              status.style.display = "flex";
+              status.innerHTML = `<ion-icon name="close-circle-outline"></ion-icon><span> Failed to send message. Please try again.</span>`;
+              status.style.color = "red";
+            }
+          } catch (error) {
+            console.error("Error:", error);
+            // alert("An error occurred while sending the message.");
+            status.style.display = "flex";
+            status.innerHTML = `<ion-icon name="close-circle-outline"></ion-icon><span> An error occurred while sending the message.</span>`;
+            status.style.color = "red";
+          } finally {
+            // Re-enable the submit button and hide spinner
+            submitBtn.disabled = false;
+            btnText.style.display = "inline";
+            spinner.style.display = "none";
+          }
+        });
     </script>
   </body>
 </html>

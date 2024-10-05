@@ -6,13 +6,13 @@
     <title>My Portfolio</title>
     <link rel="icon" href="./VK.gif" type="image/gif" />
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+      @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
 
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: "Josefin Sans", sans-serif;
+        font-family: 'Josefin Sans', sans-serif;
         scroll-behavior: smooth;
       }
       body {
@@ -43,6 +43,8 @@
         width: 400px;
       }
       .nav-list a {
+        position: relative;
+        top: 0;
         text-decoration: none;
         color: black;
         margin-left: 50px;
@@ -64,18 +66,13 @@
         width: 40px;
         object-fit: cover;
       }
-      .nav-list:hover a {
-        opacity: 0.8;
-        filter: blur(5px);
-        transition: 0.6s ease;
-      }
+
       .nav-list a:hover {
         opacity: 1;
-        filter: blur(0px);
-        transition: all 0.6s ease;
-        transform: scale(1.1);
+        top: -5px; /* changed from translateY */
         background: #209f92;
         box-shadow: 0px 0px 5px gray;
+        transition: all 0.3s ease;
       }
       .nav-list a:is(:link, :active, :visited).active {
         background: #209f92;
@@ -198,16 +195,12 @@
         border-radius: 10px;
         border: 3px solid black;
       }
-      .projects:hover .box {
-        opacity: 0.8;
-        filter: blur(5px);
-        transition: 0.6s ease;
-      }
+
       .projects .box:hover,
       .box:focus {
         opacity: 1;
-        filter: blur(0px);
-        transform: scale(1.1);
+        transform: scale(1.025) translateY(-10px);
+        transition: transform 0.4s ease-in-out;
       }
 
       .projects {
@@ -619,55 +612,55 @@
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
     <script defer>
-      const nav = document.getElementById("nav-list");
-      const items = nav.getElementsByClassName("items");
-      const bottomBar = document.getElementById("bottom-bar");
-      const bottomIcons = bottomBar.getElementsByClassName("icon");
+      const nav = document.getElementById('nav-list');
+      const items = nav.getElementsByClassName('items');
+      const bottomBar = document.getElementById('bottom-bar');
+      const bottomIcons = bottomBar.getElementsByClassName('icon');
 
       for (let i = 0; i < items.length; i++) {
-        items[i].addEventListener("click", function () {
-          var current = document.getElementsByClassName("active");
+        items[i].addEventListener('click', function () {
+          var current = document.getElementsByClassName('active');
 
-          current[0].className = current[0].className.replace(" active", "");
-          this.className += " active";
+          current[0].className = current[0].className.replace(' active', '');
+          this.className += ' active';
         });
       }
       for (let j = 0; j < bottomIcons.length; j++) {
-        bottomIcons[j].addEventListener("click", function () {
-          var currentIcon = document.getElementsByClassName("btmactive");
+        bottomIcons[j].addEventListener('click', function () {
+          var currentIcon = document.getElementsByClassName('btmactive');
           console.log(currentIcon);
           currentIcon[0].className = currentIcon[0].className.replace(
-            " btmactive",
-            ""
+            ' btmactive',
+            ''
           );
-          this.className += " btmactive";
+          this.className += ' btmactive';
         });
       }
 
-      window.addEventListener("scroll", () => {
-        const head = document.querySelector("header");
+      window.addEventListener('scroll', () => {
+        const head = document.querySelector('header');
 
-        head.classList.toggle("sticky", window.scrollY > 0);
+        head.classList.toggle('sticky', window.scrollY > 0);
       });
 
       //sendmail
 
       const form = document
-        .getElementById("contact")
-        .addEventListener("submit", async (e) => {
+        .getElementById('contact')
+        .addEventListener('submit', async (e) => {
           // Disable button and show spinner
 
           e.preventDefault();
-          let name = document.getElementById("name").value;
-          let email = document.getElementById("email").value;
-          let message = document.getElementById("message").value;
-          const status = document.getElementById("status");
-          const submitBtn = document.getElementById("btn");
-          const btnText = document.getElementById("btnText");
-          const spinner = document.getElementById("spinner");
+          let name = document.getElementById('name').value;
+          let email = document.getElementById('email').value;
+          let message = document.getElementById('message').value;
+          const status = document.getElementById('status');
+          const submitBtn = document.getElementById('btn');
+          const btnText = document.getElementById('btnText');
+          const spinner = document.getElementById('spinner');
           submitBtn.disabled = true;
-          btnText.style.display = "none";
-          spinner.style.display = "inline-block";
+          btnText.style.display = 'none';
+          spinner.style.display = 'inline-block';
           const formData = {
             name,
             email,
@@ -675,11 +668,11 @@
           };
           try {
             const response = await fetch(
-              "https://myportfolio-7n9w.onrender.com/sendmail",
+              'https://myportfolio-7n9w.onrender.com/sendmail',
               {
-                method: "POST",
+                method: 'POST',
                 headers: {
-                  "Content-Type": "application/json",
+                  'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(formData),
               }
@@ -687,36 +680,36 @@
 
             const result = await response.json();
             console.log(result);
-            status.style.display = "flex";
+            status.style.display = 'flex';
             if (response.ok) {
               // Clear the form fields after successful submission
-              document.getElementById("name").value = "";
-              document.getElementById("email").value = "";
-              document.getElementById("message").value = "";
+              document.getElementById('name').value = '';
+              document.getElementById('email').value = '';
+              document.getElementById('message').value = '';
 
               // Provide user feedback (optional)
               // alert("Message sent successfully!");
               // console.log();
-              status.style.display = "flex";
+              status.style.display = 'flex';
               status.innerHTML = `<ion-icon name="checkmark-circle-outline"></ion-icon><span> Message sent successfully!</span>`;
-              status.style.color = "lightgreen";
+              status.style.color = 'lightgreen';
             } else {
               // alert("Failed to send message. Please try again.");
-              status.style.display = "flex";
+              status.style.display = 'flex';
               status.innerHTML = `<ion-icon name="close-circle-outline"></ion-icon><span> Failed to send message. Please try again.</span>`;
-              status.style.color = "red";
+              status.style.color = 'red';
             }
           } catch (error) {
-            console.error("Error:", error);
+            console.error('Error:', error);
             // alert("An error occurred while sending the message.");
-            status.style.display = "flex";
+            status.style.display = 'flex';
             status.innerHTML = `<ion-icon name="close-circle-outline"></ion-icon><span> An error occurred while sending the message.</span>`;
-            status.style.color = "red";
+            status.style.color = 'red';
           } finally {
             // Re-enable the submit button and hide spinner
             submitBtn.disabled = false;
-            btnText.style.display = "inline";
-            spinner.style.display = "none";
+            btnText.style.display = 'inline';
+            spinner.style.display = 'none';
           }
         });
     </script>
